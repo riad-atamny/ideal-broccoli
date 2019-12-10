@@ -1,0 +1,10 @@
+"C:\Program Files\JetBrains\CLion 2019.2.5\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\ASUS\CLionProjects\ideal-broccoli
+CMake Error at vendor/Makefile:4:
+  Parse error.  Expected a command name, got unquoted argument with text
+  "BACKUP_TIME=$".
+Call Stack (most recent call first):
+  CMakeLists.txt:7 (include)
+
+
+-- Configuring incomplete, errors occurred!
+See also "C:/Users/ASUS/CLionProjects/ideal-broccoli/cmake-build-debug/CMakeFiles/CMakeOutput.log".

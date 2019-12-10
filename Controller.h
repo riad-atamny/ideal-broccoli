@@ -9,9 +9,12 @@
 
 class Controller :public Switch{
     list<Switch> switches;
-    int ctrl_incoming;
-    bool ctrl;
+
 public:
+    Controller(int id1, int cacheSize, bool ctrl, int id, int cache_size) : Switch(id1, cacheSize) {
+        id=id;
+
+    };
     Packet sendTraffic(int switch_id) {
         auto it = rules.begin();
         int sentRuleI = rand() % MAXRULES;
@@ -21,7 +24,9 @@ public:
         bitset<128> pkt =(*it).pattern;
         return Packet(pkt);
     }
-    bool ctrlAddRule(Rule rule){
+
+    Rule help(Packet pkt) override ;
+    bool AddRule(Rule rule){
         if(!(rules.size()<cache_size)) {
             float min=1;
             int i=0;

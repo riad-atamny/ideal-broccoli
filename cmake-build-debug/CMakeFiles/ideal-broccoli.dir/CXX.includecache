@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/ASUS/CLionProjects/ideal-broccoli/Controller.h
+switch.h
+C:/Users/ASUS/CLionProjects/ideal-broccoli/switch.h
+
+C:/Users/ASUS/CLionProjects/ideal-broccoli/main.cpp
+iostream
+-
+Controller.h
+C:/Users/ASUS/CLionProjects/ideal-broccoli/Controller.h
+
+C:/Users/ASUS/CLionProjects/ideal-broccoli/packet.h
+bitset
+-
+
+C:/Users/ASUS/CLionProjects/ideal-broccoli/rule.h
+packet.h
+C:/Users/ASUS/CLionProjects/ideal-broccoli/packet.h
+bitset
+-
+
+C:/Users/ASUS/CLionProjects/ideal-broccoli/switch.h
+list
+-
+rule.h
+C:/Users/ASUS/CLionProjects/ideal-broccoli/rule.h
+
