@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/vendor/db_generator-2019-12-15_190559+0200/uint128_t.h" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/vendor/db_generator/uint128_t.h" charset="ISO-8859-1" />
+  </component>
+</project>

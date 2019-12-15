@@ -96,42 +96,91 @@ int main(int argc, char *argv[])
     }
   }
 
-  if (random == 1 && argc == 2){
-    num_filters = atoi(argv[0]);
-    strcpy(filename,argv[1]);
-    // printf("filename = %s\n",filename);
-  } else if (custom == 1 && argc == 6){
-    strcpy(in_filename,argv[0]);
-    num_filters = atoi(argv[1]);
-    smoothness = atoi(argv[2]);
-    // printf("smoothness = %d\n",smoothness);
-    if (smoothness < 0 || smoothness > 64) {
-      fprintf(stderr,"Error smoothness must be a value in the range [0:64]\n");
-      fprintf(stderr,"Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
-      exit(1);
+    if (false) {
+        if (argc == 2) {
+            num_filters = atoi(argv[0]);
+            strcpy(filename, argv[1]);
+            // printf("filename = %s\n",filename);
+        } else if (custom == 1 && argc == 6) {
+            strcpy(in_filename, argv[0]);
+            num_filters = atoi(argv[1]);
+            smoothness = atoi(argv[2]);
+            // printf("smoothness = %d\n",smoothness);
+            if (smoothness < 0 || smoothness > 64) {
+                fprintf(stderr, "Error smoothness must be a value in the range [0:64]\n");
+                fprintf(stderr,
+                        "Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+                exit(1);
+            }
+            sscanf(argv[3], "%f", &addr_scope);
+            // printf("addr_scope = %.4f\n",addr_scope);
+            if (addr_scope < -1 || addr_scope > 1) {
+                fprintf(stderr, "Error address scope must be a value in the range [-1:1]\n");
+                fprintf(stderr,
+                        "Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+                exit(1);
+            }
+            sscanf(argv[4], "%f", &port_scope);
+            // printf("addr_scope = %.4f\n",port_scope);
+            if (port_scope < -1 || port_scope > 1) {
+                fprintf(stderr, "Error port scope must be a value in the range [-1:1]\n");
+                fprintf(stderr,
+                        "Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+                exit(1);
+            }
+            strcpy(filename, argv[5]);
+            // Open seed file
+            fp_in = fopen(in_filename, "r");
+            if (fp_in == NULL) {
+                fprintf(stderr, "ERROR: cannot open seed file %s\n", in_filename);
+                exit(1);
+            }
+        } else {
+            fprintf(stderr,
+                    "Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+            exit(1);
+        }
+    } else {
+        if (custom == 1 && argc == 6) {
+            strcpy(in_filename, argv[0]);
+            num_filters = atoi(argv[1]);
+            smoothness = atoi(argv[2]);
+            // printf("smoothness = %d\n",smoothness);
+            if (smoothness < 0 || smoothness > 64) {
+                fprintf(stderr, "Error smoothness must be a value in the range [0:64]\n");
+                fprintf(stderr,
+                        "Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+                exit(1);
+            }
+            sscanf(argv[3], "%f", &addr_scope);
+            // printf("addr_scope = %.4f\n",addr_scope);
+            if (addr_scope < -1 || addr_scope > 1) {
+                fprintf(stderr, "Error address scope must be a value in the range [-1:1]\n");
+                fprintf(stderr,
+                        "Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+                exit(1);
+            }
+            sscanf(argv[4], "%f", &port_scope);
+            // printf("addr_scope = %.4f\n",port_scope);
+            if (port_scope < -1 || port_scope > 1) {
+                fprintf(stderr, "Error port scope must be a value in the range [-1:1]\n");
+                fprintf(stderr,
+                        "Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+                exit(1);
+            }
+            strcpy(filename, argv[5]);
+            // Open seed file
+            fp_in = fopen(in_filename, "r");
+            if (fp_in == NULL) {
+                fprintf(stderr, "ERROR: cannot open seed file %s\n", in_filename);
+                exit(1);
+            }
+        } else {
+            fprintf(stderr,
+                    "Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
+            exit(1);
+        }
     }
-    sscanf(argv[3],"%f",&addr_scope);
-    // printf("addr_scope = %.4f\n",addr_scope);
-    if (addr_scope < -1 || addr_scope > 1) {
-      fprintf(stderr,"Error address scope must be a value in the range [-1:1]\n");
-      fprintf(stderr,"Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
-      exit(1);
-    }
-    sscanf(argv[4],"%f",&port_scope);
-    // printf("addr_scope = %.4f\n",port_scope);
-    if (port_scope < -1 || port_scope > 1) {
-      fprintf(stderr,"Error port scope must be a value in the range [-1:1]\n");
-      fprintf(stderr,"Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
-      exit(1);
-    }
-    strcpy(filename,argv[5]);
-    // Open seed file
-    fp_in = fopen(in_filename,"r");
-    if (fp_in == NULL) {fprintf(stderr,"ERROR: cannot open seed file %s\n",in_filename); exit(1);}
-  } else {
-    fprintf(stderr,"Usage: db_generator -hrb6 (-c <input parameter file>) <number of filters> <smoothness> <address scope> <port scope> <output filename>\n");
-    exit(1);
-  }
 
   // Open output file for writing 
   fp_std = fopen(filename,"w");
@@ -148,7 +197,7 @@ int main(int argc, char *argv[])
     exit(1);
   }
   seed = tp.tv_usec;
-  rand48(seed);
+  std::srand48(seed);
 
   // Generate Database 
   if (random == 1) {
