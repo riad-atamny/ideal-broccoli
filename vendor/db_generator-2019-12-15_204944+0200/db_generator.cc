@@ -8,7 +8,7 @@
 // Synthetic Database Generator 
 // See README file for details
 
-#include "stdinc.h"
+//#include "stdinc.h"
 #include "FilterList.h"
 #include "PortList.h"
 #include "random_db.h"
