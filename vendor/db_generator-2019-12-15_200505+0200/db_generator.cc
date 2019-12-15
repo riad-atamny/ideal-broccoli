@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
     exit(1);
   }
   seed = tp.tv_usec;
-  srand48(seed);
+  rand48(seed);
 
   // Generate Database 
   if (random == 1) {
