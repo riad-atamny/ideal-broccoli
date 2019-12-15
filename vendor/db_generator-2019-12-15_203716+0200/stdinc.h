@@ -36,11 +36,11 @@ double log(double);
 // long random(); double exp(double),log(double);
 
 // Return a random number in [0,1] 
-inline double randfrac() { return ((double) random())/BIGINT; }
+inline double randfrac() { return ((double) rand())/BIGINT; }
 
 // Return a random integer in the range [lo,hi].
 // Not very good if range is larger than 10**7.
-inline int randint(int lo, int hi) { return lo + (random() % (hi + 1 - lo)); }
+inline int randint(int lo, int hi) { return lo + (rand() % (hi + 1 - lo)); }
 
 // Return a random number from an exponential distribution with mean mu 
 inline double randexp(double mu) { return -mu*log(randfrac()); }
